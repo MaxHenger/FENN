@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\Spreadsheets">
+      <UniqueIdentifier>{f1a42d29-b910-4649-bf17-865ed39f1d18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Settings">
+      <UniqueIdentifier>{edd4a80e-3133-4b3a-affb-6d6a154f9906}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Settings">
+      <UniqueIdentifier>{70e53b59-036f-44da-9665-991960adbd1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Spreadsheets">
+      <UniqueIdentifier>{79a767ae-65e8-4161-8072-2b9910be3b75}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="FileIOConfig.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FileCSV.cpp">
+      <Filter>Source Files\Spreadsheets</Filter>
+    </ClCompile>
+    <ClCompile Include="FileINI.cpp">
+      <Filter>Source Files\Settings</Filter>
+    </ClCompile>
+    <ClCompile Include="FileSpreadsheet.cpp">
+      <Filter>Source Files\Spreadsheets</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="FileIOConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FileINI.h">
+      <Filter>Header Files\Settings</Filter>
+    </ClInclude>
+    <ClInclude Include="FileCSV.h">
+      <Filter>Header Files\Spreadsheets</Filter>
+    </ClInclude>
+    <ClInclude Include="FileSpreadsheet.h">
+      <Filter>Header Files\Spreadsheets</Filter>
+    </ClInclude>
+    <ClInclude Include="FileSettings.h">
+      <Filter>Header Files\Settings</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
