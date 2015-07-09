@@ -82,6 +82,23 @@ namespace fenn
 	};
 
 	//----------------------------------------------------------------
+	// Structure - RNAMutationRates
+	//----------------------------------------------------------------
+	// This structures contains all mutation rates.
+	//----------------------------------------------------------------
+	struct RNAMutationRates {
+		CHANCE_TYPE	fMappingFunction;
+		CHANCE_TYPE fAddNeuron;
+		CHANCE_TYPE fRemoveNeuron;
+		CHANCE_TYPE fChanceSlot;
+		CHANCE_TYPE fBiasRandom;
+		CHANCE_TYPE fBiasAdditive;
+		CHANCE_TYPE fAddConnection;
+		CHANCE_TYPE fWeightRandom;
+		CHANCE_TYPE fWeightAdditive;
+	};
+
+	//----------------------------------------------------------------
 	// Structure - NeuronMutation
 	//----------------------------------------------------------------
 	// When mutating multiple RNA strings within the same generation
@@ -152,17 +169,7 @@ namespace fenn
 
 		//mutation of RNA
 		// - mutating neurons
-		void MutateMappingFunction(const CHANCE_TYPE fChance);
-		void MutateAddNeuron(const CHANCE_TYPE fChance, std::vector<NeuronMutation> *pPreviousMutations);
-		void MutateRemoveNeuron(const CHANCE_TYPE fChance);
-		void MutateBiasRandom(const CHANCE_TYPE fChance);
-		void MutateBiasAdditive(const CHANCE_TYPE fChance);
-
-		// - mutating connections
-		void MutateAddConnection(const CHANCE_TYPE fChance, std::vector<ConnectionMutation> *pPreviousMutations);
-		void MutateRemoveConnection(const CHANCE_TYPE fChance);
-		void MutateWeightRandom(const CHANCE_TYPE fChance);
-		void MutateWeightAdditive(const CHANCE_TYPE fChance);
+		void Mutate(const RNAMutationRates &rates, std::vector<NeuronMutation> *pPrevNeuron, std::vector<ConnectionMutation> *pPrevConnection);
 
 	protected:
 		//keeping track of the maximum number of neurons
@@ -190,7 +197,9 @@ namespace fenn
 		static void RecombineNeuronAlleleConnections(NeuronAllele *pTarget, NeuronAllele *pParentChampion, NeuronAllele *pParent, const std::map<GLOBAL_INDEX_TYPE, NeuronAllele*> &map);
 		static void CreateNeuronAlleleConnections(NeuronAllele *pTarget, NeuronAllele * pSource, const std::map<GLOBAL_INDEX_TYPE, NeuronAllele*> &map);
 		static void CreateNeuronConnectionSets(NeuronAllele *pNew, const NeuronAllele * const pPrev);
-
+		static void AddToNeuronConnectionSets(NeuronAllele *pNew, const NeuronAllele * const pPrev);
+		static void RemoveFromNeuronConnectionSets(NeuronAllele *pNew, const NeuronAllele * const pToRemove);
+		static void MutateNeuronAllele(NeuronAllele* const pToMutate, const RNAMutationRates &rates);
 	};
 }
 

@@ -14,6 +14,14 @@ $RECYCLE.BIN/
 *.msm
 *.msp
 
+#MSVC++ files
+.sln
+.v12.suo
+.sdf
+.opensdf
+.vcxproj
+.vcxproj.filters
+
 # Windows shortcuts
 *.lnk
 

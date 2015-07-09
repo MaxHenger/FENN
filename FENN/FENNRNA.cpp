@@ -50,7 +50,8 @@ fenn::NeuronAllele::NeuronAllele(const NeuronAllele &allele)
 	, eNeuronType(allele.eNeuronType)
 	, fBias(allele.fBias)
 	, veConnections(allele.veConnections)
-	, setConnected(allele.setConnected)
+	, veConnected(allele.veConnected)
+	, setAllConnected(allele.setAllConnected)
 {
 }
 
@@ -61,7 +62,8 @@ void fenn::NeuronAllele::operator = (const NeuronAllele &allele)
 	eNeuronType		= allele.eNeuronType;
 	fBias			= allele.fBias;
 	veConnections	= allele.veConnections;
-	setConnected	= allele.setConnected;
+	veConnected		= allele.veConnected;
+	setAllConnected = allele.setAllConnected;
 }
 
 fenn::RNA::RNA()
@@ -121,6 +123,11 @@ void fenn::RNA::operator = (const RNA &rna)
 		CreateNeuronAlleleConnections(pNeuron, *it, map);
 		++it;
 	}
+
+	//now create the connection sets
+	for (const auto pNeuron : m_veOutputNeurons) {
+		CreateNeuronConnectionSets(pNeuron, NULL);
+	}
 }
 
 fenn::RNA::~RNA()
@@ -174,7 +181,8 @@ void fenn::RNA::Create(const unsigned int nInput, const unsigned int nMaxHidden,
 			newConnection.fWeight			= WEIGHT_DEFAULT;
 
 			pNeuron->veConnections.push_back(newConnection);
-			pNeuron->setConnected.insert(pNeuron);
+			pOutput->veConnected.push_back(pNeuron);
+			pNeuron->setAllConnected.insert(pOutput);
 		}
 	}
 }
@@ -298,6 +306,19 @@ void fenn::RNA::Create(RNA* const pParentChampion, RNA* const pParent)
 	}
 }
 
+void fenn::RNA::Mutate(const RNAMutationRates &rates, std::vector<NeuronMutation> *pPrevNeuron, std::vector<ConnectionMutation> *pPrevConnection) {
+	//start by mutating all the relatively simple things, mapping functions, biases and weights
+	for (auto pHidden : m_veHiddenNeurons) {
+		MutateNeuronAllele(pHidden, rates);
+	}
+
+	for (auto pOutput : m_veOutputNeurons) {
+		MutateNeuronAllele(pOutput, rates);
+	}
+
+	//do the more complicated modifications: adding and removing connections/neurons
+	//TODO: Continue here
+}
 
 bool fenn::RNA::ResizeNeuronVector(VECTOR_NEURON_ALLELE &vector, const unsigned int nNewSize) const
 {
@@ -456,10 +477,14 @@ void fenn::RNA::RecombineNeuronAlleleConnections(NeuronAllele *pTarget, NeuronAl
 
 void fenn::RNA::CreateNeuronConnectionSets(NeuronAllele *pNew, const NeuronAllele * const pPrev)
 {
+	pNew->setAllConnected.clear();
+
 	//copy the previous neuron's connection set to the current one and add the previous neuron's
 	//as well
-	pNew->setAllConnected = pPrev->setAllConnected;
-	pNew->setAllConnected.insert((NeuronAllele*)pPrev);
+	if (pPrev) {
+		pNew->setAllConnected = pPrev->setAllConnected;
+		pNew->setAllConnected.insert((NeuronAllele*)pPrev);
+	}
 
 	//call the same function recursively on all neurons connected to this one
 	for (auto pConnected : pNew->veConnected) {
