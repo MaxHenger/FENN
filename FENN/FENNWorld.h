@@ -36,7 +36,7 @@ namespace fenn
 		GLOBAL_INDEX_TYPE	m_nConnectionIndex;
 	};
 
-	comt::SingletonLazy<World> g_world;
+	typedef comt::SingletonLazy<World> world_single;
 }
 
 #endif

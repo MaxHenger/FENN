@@ -18,9 +18,9 @@ namespace comt
 		}
 
 	private:
-		Singleton() {};
-		Singleton(const Singleton<T> &val) {};
-		void operator = (const Singleton<T> &val) {};
+		SingletonLazy() {};
+		SingletonLazy(const SingletonLazy<T> &val) {};
+		void operator = (const SingletonLazy<T> &val) {};
 	};
 
 	template <typename T>
@@ -32,7 +32,7 @@ namespace comt
 		{
 		}
 
-		SingletonDynamic()
+		~SingletonDynamic()
 		{
 			if (m_pT) {
 				delete m_pT;
@@ -61,7 +61,7 @@ namespace comt
 		static T *m_pT;
 
 		SingletonDynamic(const SingletonDynamic<T> &val) {};
-		void operator SingletonDynamic(const SingletonDynamic<T> &val) {};
+		void operator = (const SingletonDynamic<T> &val) {};
 	};
 }
 
