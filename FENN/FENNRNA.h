@@ -82,6 +82,23 @@ namespace fenn
 	};
 
 	//----------------------------------------------------------------
+	// Structure - RNAMutationRates
+	//----------------------------------------------------------------
+	// This structures contains all mutation rates.
+	//----------------------------------------------------------------
+	struct RNAMutationRates {
+		CHANCE_TYPE	fMappingFunction;
+		CHANCE_TYPE fAddNeuron;
+		CHANCE_TYPE fRemoveNeuron;
+		CHANCE_TYPE fNeuronSlot;
+		CHANCE_TYPE fBiasRandom;
+		CHANCE_TYPE fBiasAdditive;
+		CHANCE_TYPE fAddConnection;
+		CHANCE_TYPE fWeightRandom;
+		CHANCE_TYPE fWeightAdditive;
+	};
+
+	//----------------------------------------------------------------
 	// Structure - NeuronMutation
 	//----------------------------------------------------------------
 	// When mutating multiple RNA strings within the same generation
@@ -95,7 +112,8 @@ namespace fenn
 		GLOBAL_INDEX_TYPE		nNeuronOrigin;		//index of the neuron connected to the new neuron
 		GLOBAL_INDEX_TYPE		nNeuronTarget;		//index of the neuron that this neuron connects to
 		GLOBAL_INDEX_TYPE		nNewNeuronIndex;	//index of the newly created neuron
-		GLOBAL_INDEX_TYPE		nNewConnectionIndex;//index of the newly created connection
+		GLOBAL_INDEX_TYPE		nNewConnectionTowards; //index of the new connection toward the newly created neuron
+		GLOBAL_INDEX_TYPE		nNewConnectionFrom;	//index of the new connection from the newly created neuron
 	};
 
 	//----------------------------------------------------------------
@@ -152,17 +170,7 @@ namespace fenn
 
 		//mutation of RNA
 		// - mutating neurons
-		void MutateMappingFunction(const CHANCE_TYPE fChance);
-		void MutateAddNeuron(const CHANCE_TYPE fChance, std::vector<NeuronMutation> *pPreviousMutations);
-		void MutateRemoveNeuron(const CHANCE_TYPE fChance);
-		void MutateBiasRandom(const CHANCE_TYPE fChance);
-		void MutateBiasAdditive(const CHANCE_TYPE fChance);
-
-		// - mutating connections
-		void MutateAddConnection(const CHANCE_TYPE fChance, std::vector<ConnectionMutation> *pPreviousMutations);
-		void MutateRemoveConnection(const CHANCE_TYPE fChance);
-		void MutateWeightRandom(const CHANCE_TYPE fChance);
-		void MutateWeightAdditive(const CHANCE_TYPE fChance);
+		void Mutate(const RNAMutationRates &rates, std::vector<NeuronMutation> &prevNeuron, std::vector<ConnectionMutation> &prevConnection);
 
 	protected:
 		//keeping track of the maximum number of neurons
@@ -186,11 +194,25 @@ namespace fenn
 		void ReleaseAll();
 
 		//reducing code redundancy
+		// - recombining neuron allele properties from parents
 		static void RecombineNeuronAllele(NeuronAllele *pTarget, NeuronAllele *pParentChampion, NeuronAllele *pParent);
 		static void RecombineNeuronAlleleConnections(NeuronAllele *pTarget, NeuronAllele *pParentChampion, NeuronAllele *pParent, const std::map<GLOBAL_INDEX_TYPE, NeuronAllele*> &map);
+		
+		// - create neuron allele properties from a source RNA neuron allele
 		static void CreateNeuronAlleleConnections(NeuronAllele *pTarget, NeuronAllele * pSource, const std::map<GLOBAL_INDEX_TYPE, NeuronAllele*> &map);
+		
+		// - constructing, adding and removing from the neuron allele connection sets
 		static void CreateNeuronConnectionSets(NeuronAllele *pNew, const NeuronAllele * const pPrev);
-
+		static void AddToNeuronConnectionSets(NeuronAllele *pToProcess, const NeuronAllele * const pNew);
+		static void AddToNeuronConnectionSets(NeuronAllele *pToProcess, const NeuronAllele::SET_CONNECTED_NEURONS &toAdd);
+		static void RemoveFromNeuronConnectionSets(NeuronAllele *pToProcess, const NeuronAllele * const pRemoved);
+		
+		// - simple neuron allele mutations (weight/bias/etc.) and the more complex ones (adding
+		// a connection or neuron, and removing a neuron)
+		static void MutateNeuronAlleleProperties(NeuronAllele* const pToMutate, const RNAMutationRates &rates);
+		void MutateConnectionAlleleAddNeuron(ConnectionAllele* const pToMutate, std::vector<NeuronMutation> &prevMutations);
+		void MutateNeuronAlleleRemoveNeuron(NeuronAllele* const pToMutate, std::vector<ConnectionMutation> &prevMutations);
+		static void MutateNeuronAlleleAddConnection(NeuronAllele* pSource, NeuronAllele* const pTarget, std::vector<ConnectionMutation> &prevMutations);
 	};
 }
 

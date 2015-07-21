@@ -11,6 +11,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CommonString", "CommonStrin
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CommonTemplate", "CommonTemplate\CommonTemplate.vcxproj", "{E815BB76-6DF9-46CB-AA5D-302DC954325C}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestCommonTemplate", "TestCommonTemplate\TestCommonTemplate.vcxproj", "{376C7ADD-452F-4C5B-BE50-A4A576A0CA27}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E815BB76-6DF9-46CB-AA5D-302DC954325C} = {E815BB76-6DF9-46CB-AA5D-302DC954325C}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -33,6 +38,10 @@ Global
 		{E815BB76-6DF9-46CB-AA5D-302DC954325C}.Debug|Win32.Build.0 = Debug|Win32
 		{E815BB76-6DF9-46CB-AA5D-302DC954325C}.Release|Win32.ActiveCfg = Release|Win32
 		{E815BB76-6DF9-46CB-AA5D-302DC954325C}.Release|Win32.Build.0 = Release|Win32
+		{376C7ADD-452F-4C5B-BE50-A4A576A0CA27}.Debug|Win32.ActiveCfg = Debug|Win32
+		{376C7ADD-452F-4C5B-BE50-A4A576A0CA27}.Debug|Win32.Build.0 = Debug|Win32
+		{376C7ADD-452F-4C5B-BE50-A4A576A0CA27}.Release|Win32.ActiveCfg = Release|Win32
+		{376C7ADD-452F-4C5B-BE50-A4A576A0CA27}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
