@@ -13,42 +13,96 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\RNA">
-      <UniqueIdentifier>{63b3496b-d56b-4ffe-9d28-7a99926493a8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Neurons">
       <UniqueIdentifier>{fccadf42-d255-4a4f-a5ee-e1d991b5d902}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\RNA">
-      <UniqueIdentifier>{44f82142-8c16-4775-a22d-ddbf28ea01d6}</UniqueIdentifier>
+    <Filter Include="Header Files\NeuralSystem">
+      <UniqueIdentifier>{55ed6a5a-5f10-4e0b-b42e-02c68f764d05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\NeuralSystem">
+      <UniqueIdentifier>{52fee4c1-59a4-40aa-bc7e-228e55337b7b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\NeuralSystem\NEAT">
+      <UniqueIdentifier>{c6fe50a8-ab91-4507-8c06-5b5c167c2ccf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\NeuralSystem\NEAT">
+      <UniqueIdentifier>{6067f2dd-eb51-4926-97f1-0d62563d15d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Neurons">
+      <UniqueIdentifier>{0a759089-4e0f-4da0-84c1-113bd51e72bb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="FENNConfig.h">
+    <ClInclude Include="NEATRNA.h">
+      <Filter>Header Files\NeuralSystem\NEAT</Filter>
+    </ClInclude>
+    <ClInclude Include="Config.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FENNRNA.h">
-      <Filter>Header Files\RNA</Filter>
+    <ClInclude Include="Random.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FENNNeuronBase.h">
+    <ClInclude Include="World.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Neuron.h">
       <Filter>Header Files\Neurons</Filter>
     </ClInclude>
-    <ClInclude Include="FENNWorld.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="RNA.h">
+      <Filter>Header Files\NeuralSystem</Filter>
     </ClInclude>
-    <ClInclude Include="FENNRandom.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="NeuronInput.h">
+      <Filter>Header Files\Neurons</Filter>
+    </ClInclude>
+    <ClInclude Include="NeuronAddition.h">
+      <Filter>Header Files\Neurons</Filter>
+    </ClInclude>
+    <ClInclude Include="NeuronSubtraction.h">
+      <Filter>Header Files\Neurons</Filter>
+    </ClInclude>
+    <ClInclude Include="NeuronMultiplication.h">
+      <Filter>Header Files\Neurons</Filter>
+    </ClInclude>
+    <ClInclude Include="NeuronDivision.h">
+      <Filter>Header Files\Neurons</Filter>
+    </ClInclude>
+    <ClInclude Include="NEATNetwork.h">
+      <Filter>Header Files\NeuralSystem\NEAT</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="FENNWorld.cpp">
+    <ClCompile Include="NEATRNA.cpp">
+      <Filter>Source Files\NeuralSystem\NEAT</Filter>
+    </ClCompile>
+    <ClCompile Include="Random.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FENNRNA.cpp">
-      <Filter>Source Files\RNA</Filter>
-    </ClCompile>
-    <ClCompile Include="FENNRandom.cpp">
+    <ClCompile Include="World.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Neuron.cpp">
+      <Filter>Source Files\Neurons</Filter>
+    </ClCompile>
+    <ClCompile Include="NeuronInput.cpp">
+      <Filter>Source Files\Neurons</Filter>
+    </ClCompile>
+    <ClCompile Include="NeuronAddition.cpp">
+      <Filter>Source Files\Neurons</Filter>
+    </ClCompile>
+    <ClCompile Include="NeuronSubtraction.cpp">
+      <Filter>Source Files\Neurons</Filter>
+    </ClCompile>
+    <ClCompile Include="NeuronMultiplication.cpp">
+      <Filter>Source Files\Neurons</Filter>
+    </ClCompile>
+    <ClCompile Include="NeuronDivision.cpp">
+      <Filter>Source Files\Neurons</Filter>
+    </ClCompile>
+    <ClCompile Include="NEATNetwork.cpp">
+      <Filter>Source Files\NeuralSystem\NEAT</Filter>
+    </ClCompile>
+    <ClCompile Include="RNA.cpp">
+      <Filter>Source Files\NeuralSystem</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

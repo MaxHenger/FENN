@@ -66,16 +66,31 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="FENNConfig.h" />
-    <ClInclude Include="FENNNeuronBase.h" />
-    <ClInclude Include="FENNRandom.h" />
-    <ClInclude Include="FENNRNA.h" />
-    <ClInclude Include="FENNWorld.h" />
+    <ClInclude Include="Config.h" />
+    <ClInclude Include="NEATNetwork.h" />
+    <ClInclude Include="Neuron.h" />
+    <ClInclude Include="NeuronAddition.h" />
+    <ClInclude Include="NeuronDivision.h" />
+    <ClInclude Include="NeuronInput.h" />
+    <ClInclude Include="NeuronMultiplication.h" />
+    <ClInclude Include="NeuronSubtraction.h" />
+    <ClInclude Include="Random.h" />
+    <ClInclude Include="NEATRNA.h" />
+    <ClInclude Include="RNA.h" />
+    <ClInclude Include="World.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="FENNRandom.cpp" />
-    <ClCompile Include="FENNRNA.cpp" />
-    <ClCompile Include="FENNWorld.cpp" />
+    <ClCompile Include="NEATNetwork.cpp" />
+    <ClCompile Include="Neuron.cpp" />
+    <ClCompile Include="NeuronAddition.cpp" />
+    <ClCompile Include="NeuronDivision.cpp" />
+    <ClCompile Include="NeuronInput.cpp" />
+    <ClCompile Include="NeuronMultiplication.cpp" />
+    <ClCompile Include="NeuronSubtraction.cpp" />
+    <ClCompile Include="Random.cpp" />
+    <ClCompile Include="NEATRNA.cpp" />
+    <ClCompile Include="RNA.cpp" />
+    <ClCompile Include="World.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
